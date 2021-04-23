@@ -1,0 +1,5 @@
+
+        $employees = collect(DB::getSchemaBuilder()->getColumnListing('employees'));
+        $employees = $employees->filter(function ($value, $key) {
+            return in_array($value, ['EmployeeID', 'CompanyID', 'IP1']) === false;
+        });

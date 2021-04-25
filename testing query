@@ -1,0 +1,13 @@
+   $latestPosts = DB::table('test')
+                      ->select('uid', DB::raw('MAX(0) as maxprice'))
+                      ->where('uid','=',17)
+                      ->groupBy('uid');
+
+
+   $users = DB::table('myusers')
+   ->select('myusers.name','buy.nick','t.maxprice')
+   ->join('buy','myusers.id','=','buy.buid')
+         ->joinSub($latestPosts, 't', function ($join) {
+             $join->on('myusers.id', '=', 't.uid');
+         })->get();
+         dd($users);

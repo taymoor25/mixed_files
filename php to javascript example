@@ -1,0 +1,4 @@
+ var CompanySectionurls = "{{json_encode($CompanySectionsURL)}}";
+    CompanySectionurls = JSON.parse(CompanySectionurls.replace(/&quot;/g, '"'));
+    var RoleSectionurls = "{{json_encode($RoleSectionsURL)}}";
+    RoleSectionurls = JSON.parse(RoleSectionurls.replace(/&quot;/g, '"'));

@@ -1,0 +1,10 @@
+var drEvent = modal.find('#editattachment').dropify(
+            {
+                defaultFile: qrimage
+            });
+            drEvent = drEvent.data('dropify');
+            drEvent.resetPreview();
+            drEvent.clearElement();
+            drEvent.settings.defaultFile = qrimage;
+            drEvent.destroy();
+            drEvent.init();

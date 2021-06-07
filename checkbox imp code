@@ -1,0 +1,35 @@
+  if (data.emp_sites.length == 0) {
+       
+      }
+      else
+       {
+      var flag = true;
+      var location_list = [];
+      var StoreID_list = [];
+      $('.sitescheckbox').each(function () {
+        StoreID_list.push($(this).val());
+        var location = $(this).next('label').text();
+        location = location.replace(/\s+/g, '');
+        location_list.push(location);
+      });
+      console.log(location_list);
+      for (index in data.emp_sites) {
+        // inner loop 
+        console.log('index' + index);
+        for (index2 in StoreID_list) {
+          if (data.emp_sites[index].StoreID == StoreID_list[index2]) {
+            var checkbox = StoreID_list[index2];
+            checkbox--;
+            $('.sitescheckbox')[checkbox].checked = true;
+          }
+
+          if (data.base_location == location_list[index2] && flag == true) {
+            var checkbox = index2;
+            checkbox++;
+            $('#empsites_' + checkbox).prop('disabled', true);
+            flag = false;
+          }
+        }
+      }
+    }
+    }

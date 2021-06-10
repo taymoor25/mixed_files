@@ -1,0 +1,73 @@
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $.ajax({
+            type: "POST",
+            url: "/training/crqdatatable",
+            data: {
+                'level': "{{$level}}",
+                'columns': '1'
+            },
+            dataType: 'JSON',
+            success: function(data) {
+                var totalColumns = 0;
+                var header = [];
+                var columnNames;
+                for (index in data[0]) {
+                    obj = {};
+                    columnNames = data[0][index];
+                    obj['title'] = columnNames;
+                    header.push(obj);
+                }
+                console.log(index);
+                totalColumns = index;
+                console.log(header);
+                var table = $('#crqtable').DataTable({
+
+                    "serverSide": true,
+                    "processing": true,
+                    "responsive": true,
+                    "lengthMenu": [
+                        [10, 25, 50, 100],
+                        [10, 25, 50, 100]
+                    ],
+                    columnDefs: [{
+                        "defaultContent": "-",
+                        "targets": "_all"
+                    }],
+                    "ajax": {
+                        "url": "/training/crqdatatable",
+                        "type": "POST",
+                        "data": {
+                            'level': "{{$level}}",
+                            'location': "{{request()->route('site')}}"
+                        },
+                        "dataType": "JSON",
+
+                    },
+                    columns: header,
+                    "drawCallback": function(settings, json) {
+                        console.log(settings.json.data);
+                        list = [];
+                        console.log('ddd');
+                        for (index in settings.json.data) {
+                            list[0] = settings.json.data[index].Name;
+                            list[1] = settings.json.data[index].orange_circle;
+                            for (i = 0; i < totalColumns; i++) {
+                                list[i + 2] = settings.json.data[index].green_circle;
+                            }
+                            table.row(index).data(list);
+
+                        }
+                    }
+
+                });
+
+            },
+            error: function(e) {
+                console.log(e.responseText);
+            }
+        });
+
+

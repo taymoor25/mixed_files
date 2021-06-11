@@ -29,3 +29,10 @@ var drEvent = modal.find('#editattachment').dropify(
   });
 
 });
+
+//code to reset dropify file value 
+
+ var dropify = $('#trust_id').dropify();
+    dropify = dropify.data('dropify');
+    dropify.resetPreview();
+    dropify.clearElement();

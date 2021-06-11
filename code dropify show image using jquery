@@ -8,3 +8,24 @@ var drEvent = modal.find('#editattachment').dropify(
             drEvent.settings.defaultFile = qrimage;
             drEvent.destroy();
             drEvent.init();
+            
+            sending file to server with  ajax
+            
+ var formData = new FormData();
+  var file = inputElement[0].files[0];
+  formData.append('file', file);
+  $.ajax({
+    type: "POST",
+    url: "/pending/updatedocs",
+    data: formData,
+    processData: false,
+    contentType: false,
+    success: function (response) {
+      console.log(response);
+    },
+    error: function (e) {
+      console.log(e.responseText);
+    }
+  });
+
+});

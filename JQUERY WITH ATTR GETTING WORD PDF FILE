@@ -1,0 +1,15 @@
+  const title = $(this).attr("title");
+            const icon = $(this).attr("icon");
+            const path = $(this).attr("path");
+            const url = window.location.hostname;
+            if (icon == title || icon == 'collection-pdf') {
+                const imageviewmodal = "<embed src='https://" + url + "/uploads/" + path + "/" + title + "'  frameborder='0' width='100%' height='500px'>";
+                $('#content').empty();
+
+                $('#content').append(imageviewmodal);
+                $('#imagemodal').modal('show');
+            } else {
+                const imageviewmodal = "<embed src='https://view.officeapps.live.com/op/embed.aspx?src=https://" + url + "/uploads/" + path + "/" + title + "' frameborder=0 width=100% height=500px>";
+                $('#content').empty();
+                $('#content').append(imageviewmodal);
+                $('#imagemodal').modal('show');

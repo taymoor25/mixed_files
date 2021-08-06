@@ -33,3 +33,16 @@
       }
     }
     }
+    
+    
+    // code disablle the button and enable on check box 
+     $('#disclaimer').on('change', function(e) {
+      
+        if ($(this).is(':checked')) {
+           $('#accident-submit-btn').attr('disabled',false);
+        console.log($(this).val() + ' is now checked');
+    } else {
+      $('#accident-submit-btn').attr('disabled',true);
+        console.log($(this).val() + ' is now unchecked');
+    }
+  });

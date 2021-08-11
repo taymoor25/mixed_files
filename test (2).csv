@@ -1,1 +1,72 @@
 "3","oggy","Oggy.png","2020-12-31T12:17:30.000000Z","2021-01-01T06:36:28.000000Z"
+
+
+ code for import xlsx 
+ <?php
+
+namespace App\Imports;
+
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\ToCollection;
+
+class testexcel implements ToCollection
+{
+    /**
+    * @param Collection $collection
+    */
+    public function collection(Collection $collection)
+    {
+        //
+
+        // dd($collection->toArray());
+
+        foreach ($collection->toArray() as  $obj) {
+
+            if ($obj[1]!='Dob') {
+              $date =   \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($obj[1])->format('d/m/Y');
+                dump($date);
+            }
+           
+        }
+    }
+}
+
+ 
+ 
+ 
+ 
+ 
+ <?php
+
+namespace App\Imports;
+
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\ToCollection;
+
+class testexcel implements ToCollection
+{
+    /**
+    * @param Collection $collection
+    */
+    public function collection(Collection $collection)
+    {
+        //
+
+        // dd($collection->toArray());
+
+        foreach ($collection->toArray() as  $obj) {
+
+            if ($obj[1]!='Dob') {
+              $date =   \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($obj[1])->format('d/m/Y');
+                dump($date);
+            }
+           
+        }
+    }
+}
+
+ 
+ 
+ 
+  code for format date of colum
+ \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($obj[1])->format('d/m/Y');

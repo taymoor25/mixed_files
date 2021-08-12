@@ -2,39 +2,39 @@
 
 
  code for import xlsx 
- <?php
+<?php
 
-namespace App\Imports;
+namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+use Laravel\Fortify\Fortify;
+use App\Imports\testexcel;
 
-use Illuminate\Support\Collection;
-use Maatwebsite\Excel\Concerns\ToCollection;
-
-class testexcel implements ToCollection
+use Excel;
+class AuthController extends Controller
 {
-    /**
-    * @param Collection $collection
-    */
-    public function collection(Collection $collection)
+   public function __construct(){
+
+    $this->middleware('auth');
+
+    }    
+    public function Dashboared()
     {
-        //
-
-        // dd($collection->toArray());
-
-        foreach ($collection->toArray() as  $obj) {
-
-            if ($obj[1]!='Dob') {
-              $date =   \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($obj[1])->format('d/m/Y');
-                dump($date);
-            }
-           
-        }
+        return view('home');
     }
+
+    public function valid(Request $r)
+{
+     $data =   Excel::import(new testexcel, $r->file('title'));
+    // $path = $r->title->path();
+    // $data = Excel::import('','xlsx',$path)->get();
+ 
+    $validated = $r->validate([
+        'title' => 'required',
+
+    ]);
+}
 }
 
- 
- 
- 
- 
  
  <?php
 

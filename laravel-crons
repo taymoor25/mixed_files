@@ -1,5 +1,6 @@
   $obj  = new myuserController();
         $schedule->command('cronminute:insert')->everyMinute();
+        
         $schedule->call(function () use ($obj) {
             $obj->twominute();
         })->everyTwoMinutes();

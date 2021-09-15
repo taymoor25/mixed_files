@@ -46,3 +46,27 @@
         console.log($(this).val() + ' is now unchecked');
     }
   });
+  
+  
+   // checkbox jb sary button check hun to delete btn show ho or agr sub uncheck kr diye hain to dobara hide ho jaye 
+   checkbox_count =0
+     $(document).on('change', '.bulk-delete', function() {
+            var ischecked = $(this).is(':checked');
+            const div = $('div').find('#delete_btn');
+
+
+
+            if (div.css('display') == 'none') {
+                $('#delete_btn').show();
+            }
+            if (!ischecked) {
+                checkbox_count--;
+                if (checkbox_count == 0) {
+                    $('#delete_btn').hide();
+                    return;
+                }
+            } else {
+                checkbox_count++;
+                console.log(checkbox_count);
+            }
+        });

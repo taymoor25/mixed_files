@@ -1,3 +1,6 @@
+
+this code works if dropify isi inside in modal
+
 var drEvent = modal.find('#editattachment').dropify(
             {
                 defaultFile: qrimage

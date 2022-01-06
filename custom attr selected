@@ -1,0 +1,1 @@
+$('option:selected', this).attr('filter');
